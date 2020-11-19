@@ -1,10 +1,12 @@
 # c-algorithms (Because c is cool)
 
-## Prerequisites
+A repository with some functions written in c language.
 
-Linux - Things you need to compile and use the libraries:
+## ✔️ Requirements
 
-- gcc Compiler
+Scripts written in linux environment (Ubuntu **18.x** and **20.x**) - Things you need to compile and use the libraries:
+
+- gcc compiler
 ```bash
 $> sudo apt install gcc 
 ```
@@ -21,7 +23,7 @@ $> sudo apt install make
 $> sudo apt install cmake 
 ```
 
-## Getting Started
+## ⌨️ Getting Started
 
 Write your script in the main.c file
 
@@ -71,7 +73,7 @@ $> ./_make.sh
 $> ./_run.sh
 ```
 
-## Creating your own libs and functions
+## 📁 Creating your own libs and functions
 You can create your own libraries with simple steps:
 
 - Create the .c and .h files of your lib in the src folder (in our example we will create foo.h and foo.c)
@@ -81,7 +83,7 @@ You can create your own libraries with simple steps:
 - Add the lib header in the main
 	- ```#include "src/foo.h" ```
 
-## License
+## 📝 License
 
 This project is licensed under the MIT GENERAL PUBLIC LICENSE - see the [LICENSE](LICENSE) file for more details.
 
