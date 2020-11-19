@@ -1,5 +1,6 @@
 #include <string.h>
 
+//My strlen function implementation
 int stringLength(char *string) {
     long stringLen = 0;
     char *s = string;
@@ -9,7 +10,7 @@ int stringLength(char *string) {
     }
     return stringLen;
 }
-
+//My strcpy function implementation
 void stringCopy(char *destination, char *source) {
     while(*source) {
         (*destination) = (*source);
@@ -18,7 +19,7 @@ void stringCopy(char *destination, char *source) {
     }
     (*destination) = '\0';
 }
-
+//My strcmp function implementation
 int stringCompare(char *strOne, char *strTwo) {
     // (str1 == str2) (0) 
     // (str1 >!= str2) (1)
@@ -32,7 +33,7 @@ int stringCompare(char *strOne, char *strTwo) {
     }
     return ( *s1 > *s2 ) - ( *s2  > *s1 );
 }
-
+//My strcat function implementation
 void stringCatern(char *destination, char *source, int len) {
     char *s1 = destination;
     char *s2 = source;
@@ -47,7 +48,7 @@ void stringCatern(char *destination, char *source, int len) {
     (*s1) = '\0';
 }
 
-//Number of occurrences of the matchingString in the target string (Use: <string.h> for strlen())
+//Number of occurrences of the matching string in the target string (Use: <string.h> for strlen())
 int trivialMatch(char *matchingString, char *targetString) {
 	int i, j, k;
 	int matchingOccurrences = 0;
@@ -63,4 +64,14 @@ int trivialMatch(char *matchingString, char *targetString) {
 			matchingOccurrences++;	
 	}
 	return matchingOccurrences;	
+}
+
+//Checks if a word is a palindrome (Use: <string.h> for strlen())
+_Bool palindrome(char *str) {
+    int length = strlen(str);
+    for(int i = 0; i < length; i++) {
+        if(str[i] != str[(length - 1) - i])
+            return 0;
+    }
+    return 1;
 }
