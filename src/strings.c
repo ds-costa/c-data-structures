@@ -69,7 +69,7 @@ int trivialMatch(char *matchingString, char *targetString) {
 //Checks if a word is a palindrome (Use: <string.h> for strlen())
 _Bool palindrome(char *str) {
     int length = strlen(str);
-    for(int i = 0; i < length; i++) {
+    for(int i = 0; i < length / 2; i++) {
         if(str[i] != str[(length - 1) - i])
             return 0;
     }
