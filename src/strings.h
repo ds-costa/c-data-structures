@@ -9,6 +9,7 @@ int stringLength(char *string);
 void stringCopy(char *destination, char *origin);
 int stringCompare(char *strOne, char *strTwo);
 void stringCatern(char *destination, char *source, int len);
+void stringReverse(char *str);
 int trivialMatch(char *matchingString, char *targetString);
 _Bool palindrome(char *str);
 #endif

@@ -47,6 +47,21 @@ void stringCatern(char *destination, char *source, int len) {
     }
     (*s1) = '\0';
 }
+// Reverse a given string
+void stringReverse(char *str) {
+	char aux;
+	int len = strlen(str);
+	for(int i = 0, j = len - 1; i < j; i++, j--) {
+		//With aux variable
+		aux = str[i];
+		str[i] = str[j];
+		str[j] = aux;
+		//Optional no aux variable use
+		// str[i] = str[i] + str[j];
+		// str[j] = str[i] - str[j];
+		// str[i] = str[i] - str[j];
+	}
+}
 
 //Number of occurrences of the matching string in the target string (Use: <string.h> for strlen())
 int trivialMatch(char *matchingString, char *targetString) {
