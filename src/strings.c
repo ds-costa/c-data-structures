@@ -1,14 +1,14 @@
 #include <string.h>
 
 //My strlen function implementation
-int stringLength(char *string) {
-    long stringLen = 0;
-    char *s = string;
+int stringLength(char *str) {
+    long length = 0;
+    char *s = str;
     while( *s ) {
-        stringLen++;
+        length++;
         s++;
     }
-    return stringLen;
+    return length;
 }
 //My strcpy function implementation
 void stringCopy(char *destination, char *source) {

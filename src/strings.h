@@ -5,7 +5,7 @@
 
 #ifndef STRINGS_H
 #define STRINGS_H
-int stringLength(char *string);
+int stringLength(char *str);
 void stringCopy(char *destination, char *origin);
 int stringCompare(char *strOne, char *strTwo);
 void stringCatern(char *destination, char *source, int len);
