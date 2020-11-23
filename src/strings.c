@@ -1,6 +1,6 @@
 #include <string.h>
 
-//My strlen function implementation
+//Return the length of a given string
 int stringLength(char *str) {
     long length = 0;
     char *s = str;
@@ -10,7 +10,7 @@ int stringLength(char *str) {
     }
     return length;
 }
-//My strcpy function implementation
+//Copy the content of a source string to a destiny string 
 void stringCopy(char *destination, char *source) {
     while(*source) {
         (*destination) = (*source);
@@ -19,7 +19,7 @@ void stringCopy(char *destination, char *source) {
     }
     (*destination) = '\0';
 }
-//My strcmp function implementation
+//Compare if two strings are the same
 int stringCompare(char *strOne, char *strTwo) {
     // (str1 == str2) (0) 
     // (str1 >!= str2) (1)
@@ -33,7 +33,7 @@ int stringCompare(char *strOne, char *strTwo) {
     }
     return ( *s1 > *s2 ) - ( *s2  > *s1 );
 }
-//My strcat function implementation
+//Concatenate the source string into the destiny string
 void stringCatern(char *destination, char *source, int len) {
     char *s1 = destination;
     char *s2 = source;
