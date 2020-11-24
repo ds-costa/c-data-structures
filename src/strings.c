@@ -60,6 +60,10 @@ void stringReverse(char *str) {
 		// str[i] = str[i] + str[j];
 		// str[j] = str[i] - str[j];
 		// str[i] = str[i] - str[j];
+		//Optional one index (j) use
+		// aux = str[j];
+		// str[j] = str[len - j - 1];
+		// str[len - j - 1] = aux;
 	}
 }
 
