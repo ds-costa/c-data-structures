@@ -7,6 +7,7 @@
 *****************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 //Estrutura que define o dado abstrato "Ponto"
@@ -21,13 +22,12 @@ Point centerOfMass(Point *points, int pointsQuantity);
 
 int main(void) {
 
-	FILE *inputStream = fopen("input.txt", "r");
+	FILE *inputStream = fopen("in03", "r");
 	int pointsQuantity, i;
  
 	fscanf(inputStream, "%d", &pointsQuantity);
+	Point *points = malloc(sizeof(Point) * pointsQuantity);
 
-	Point points[pointsQuantity];
-	
 	// Leitura do arquivo de input e gravação de valores em vetor de pontos
 	for(i = 0; i < pointsQuantity; i++) {
 		fscanf(inputStream, "%lf %lf", &points[i].x, &points[i].y);
@@ -54,7 +54,7 @@ int main(void) {
 	}
 
 	printf("Ponto (%.1lf, %.1lf)\n", centerPoint.x, centerPoint.y);
-
+	free(points);
 	return 0;
 }
 
