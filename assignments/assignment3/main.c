@@ -4,19 +4,72 @@
 *	DESCRIPTTION: Projeto 03 da disciplina ATP2, 
 *	
 *****************************************/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <limits.h>
 #include <time.h>
 
+//Tipo de dado "nó" para listas encadeadas
 typedef struct node {
 	char **mat;
 	struct node *next;
 } Node;
 
-Node *addEnd(Node **head, int N, char board[][N], unsigned long *solutionsQuantity) {
+//Adiciona um nó (nodo) no fim da lista encadeada
+Node *addNode(Node **head, int N, char board[][N], unsigned long *solutionsQuantity);
+// Limpa uma lista encadeada
+Node* clearList(Node *head, int N);
+
+// Função recursiva que soluciona o problema das n-rainhas
+int nQueens(int N, char board[][N], int col, unsigned long *solutionsQuantity, Node **head);
+// Função auxiliar que verifica se é possivel inserir a rainha no tabuleiro
+int canPlaceQueen(int N, char board[][N], int row, int col);
+
+int main() {
+
+    int i, j, N;
+	unsigned long solutionsQuantity = 0;
+    FILE *outStream = fopen("rainha.out", "w");
+    Node *list = NULL;
+    
+    scanf("%d", &N); //Entrada lida por teclado (stdin)
+
+    char board[N][N]; 
+
+    // Inicializa o tabuleiro
+	for(i = 0; i < N; i++) {
+		for(j = 0; j < N; j++) {
+			board[i][j] = '0';
+		}
+	}
+    
+    //Resolve o problema e grava as soluções em list
+    nQueens(N, board, 0, &solutionsQuantity, &list);
+    
+    //Gravando em arquivo
+    fprintf(outStream, "%ld\n\n", solutionsQuantity);
+    //Aponta para o primeiro nó da lista
+    Node *current = list;
+
+    while(current != NULL) {
+        for (i = 0; i < N; i++) {
+            for (j = 0; j < N; j++) {
+                fprintf(outStream, "%c", current->mat[i][j]);
+            } fprintf(outStream, "\n");
+        }
+        current = current->next;               
+        fprintf(outStream, "\n\n"); 
+    }
+
+    //Limpando lista
+    list = clearList(list, N);
+    //Fechando stream de arquivo
+    fclose(outStream); 
+
+    return 0;
+}
+
+Node *addNode(Node **head, int N, char board[][N], unsigned long *solutionsQuantity) {
 	
     int i, j;
 	Node *current = *head;
@@ -52,33 +105,33 @@ Node *addEnd(Node **head, int N, char board[][N], unsigned long *solutionsQuanti
 	return *head;
 }
 
-Node* clear(Node *head, int N) {
-	
+
+Node* clearList(Node *head, int N) {
     Node* tmp;
     int i;
 
 	while(head != NULL) {
         tmp = head;
 		head = head->next;
-		
-		for(i = 0; i < N; i++) {
-    		free(tmp->mat[i]);
-        }
-		free(tmp->mat);
 
+        //Desaloca matriz	
+        for(i = 0; i < N; i++) {
+    		free(tmp->mat[i]);
+        } free(tmp->mat);
+        
+        //Desaloca ponteiro de lista
 		free(tmp);
     }
 	return head;
 }
 
-// Checamos apenas o lado esquerdo da matriz de [0, col - 1] pois não há rainhas nas colunas a direita de col (O backtracking vai da esquerda para a direita)
 int canPlaceQueen(int N, char board[][N], int row, int col) {
     int i, j;
     //Linha da rainha
     for (j = 0; j < col; j++) {
         if(board[row][j] == '1') return 0;
     }
-    //Diagonal superior (diagonal) da rainha
+    //Diagonal superior (upper) da rainha
     for (i = row, j = col; i >= 0 && j >= 0; i--, j--) {
         if (board[i][j] == '1') return 0;
     }
@@ -89,75 +142,25 @@ int canPlaceQueen(int N, char board[][N], int row, int col) {
     return 1;
 }
 
-// Função recursiva que soluciona o problema
 int nQueens(int N, char board[][N], int col, unsigned long *solutionsQuantity, Node **head) {
-
     int i;
-    int isPossible = 0;
-
     // Se todas as rainhas foram posicionadas encerramos a execução de uma solução
     if (col == N) {
-        // printSolution(N, board, solutionsQuantity, outStream);
-        *head = addEnd(&(*head), N, board, solutionsQuantity);
+        *head = addNode(&(*head), N, board, solutionsQuantity);
         return 1;
     }
-
     // Dada a coluna iteramos sobre todas as suas linhas tentando inserir a rainha
     for (i = 0; i < N; i++) {
         //Verifica se a rainha pode ser colocada no tabuleiro
         if ( canPlaceQueen(N, board, i, col) ) {        
             // Coloca uma rainha no tabuleiro
             board[i][col] = '1';
-            // Armazena o resultado da execução para a próxima coluna
-            isPossible = nQueens(N, board, col + 1, solutionsQuantity, &(*head));
-			// BACKTRACK
+            // Verifica recursivamente se a rainha posicionada leva a uma solução
+            nQueens(N, board, col + 1, solutionsQuantity, &(*head));
+			// BACKTRACK, a rainha é removida do tabuleiro caso sua posição não leve a uma solução
             board[i][col] = '0';
         }
     }
     //Retorna falso se não foi possível colocar a rainha em nenhuma linha da coluna atual (Esgotamento de soluções)
-    return isPossible;
-}
-
-int main() {
-
-    int i, j, N;
-	unsigned long solutionsQuantity = 0;
-    FILE *outStream = fopen("rainha.out", "w");
-    Node *list = NULL;
-    
-    scanf("%d", &N);
-
-    char board[N][N];
-
-    // Inicializa o tabuleiro
-	for(i = 0; i < N; i++) {
-		for(j = 0; j < N; j++) {
-			board[i][j] = '0';
-		}
-	}
-    
-    nQueens(N, board, 0, &solutionsQuantity, &list);
-    
-    //Gravando em arquivo
-    fprintf(outStream, "%ld\n\n", solutionsQuantity);
-    Node *current = list;
-    while(current != NULL) {
-
-        for (i = 0; i < N; i++) {
-            for (j = 0; j < N; j++) {
-                fprintf(outStream, "%c", current->mat[i][j]);
-            } fprintf(outStream, "\n");
-        }
-        current = current->next;               
-        fprintf(outStream, "\n\n"); 
-    }
-
-    list = clear(list, N); //Limpando lista
-    fclose(outStream); //Fechando stream (FIM)
-
     return 0;
 }
-
-//com char em [16][16]: 3.78 gb
-//com int em [16][16]: 16gb
-//com short em [16][16]: 8gb
