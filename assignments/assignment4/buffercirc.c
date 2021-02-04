@@ -10,7 +10,7 @@
 
 
 #define CIRCULAR_BUFFER_MAX_SIZE 40
-#define CIRCULAR_BUFFER_PUSH_OPERATION 0
+#define CIRCULAR_BUFFER_WRITE_OPERATION 0
 #define CIRCULAR_BUFFER_POP_OPERATION 1
 
 
@@ -29,9 +29,9 @@ void deleteList(Elem** head, Elem**tail);
 //Cria um buffer circular
 void circularBufferInit(Elem** head, Elem** tail);
 //Operação de push em buffer circular
-void circularBufferPush(Elem** head, Elem** tail, int urg, char pal[20]);
+void circularBufferRead(Elem** head, Elem** tail, int urg, char pal[20]);
 //Operação de pop em buffer circular
-void circularBufferPop(Elem** head, Elem** tail, Elem** output);
+void circularBufferWrite(Elem** head, Elem** tail, Elem** output);
 
 int main()
 {
@@ -64,15 +64,15 @@ int main()
             break;
         }
 
-        if(operation == CIRCULAR_BUFFER_PUSH_OPERATION)
+        if(operation == CIRCULAR_BUFFER_WRITE_OPERATION)
         {
-            circularBufferPush(&head, &tail, urg, word);
+            circularBufferRead(&head, &tail, urg, word);
         }
         else 
         {
             lastTailIndex = tail;
             
-            circularBufferPop(&head, &tail, &aux); // Valor consumido é armazenado em aux
+            circularBufferWrite(&head, &tail, &aux); // Valor consumido é armazenado em aux
         
             //Gravação em arquivo
             if(lastTailIndex != tail)
@@ -132,7 +132,7 @@ void deleteList(Elem** head, Elem**tail)
 }
 
 //Operação de push em buffer circular
-void circularBufferPush(Elem** head, Elem** tail, int urg, char pal[20])
+void circularBufferRead(Elem** head, Elem** tail, int urg, char pal[20])
 {
     Elem* next = (*head)->prox;
 
@@ -145,7 +145,7 @@ void circularBufferPush(Elem** head, Elem** tail, int urg, char pal[20])
 }
 
 //Operação de pop em buffer circular
-void circularBufferPop(Elem** head, Elem** tail, Elem** output)
+void circularBufferWrite(Elem** head, Elem** tail, Elem** output)
 {
     if(*head == *tail)
     {
