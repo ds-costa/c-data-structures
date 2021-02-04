@@ -23,15 +23,15 @@ typedef struct no {
 //Cria um novo nó
 Elem* newNode(char pal[20], int urg);
 //Adiciona um nó a lista circular
-void addNode(Elem** head, Elem** tail, Elem* elem);
+void addNode(Elem** write, Elem** read, Elem* elem);
 //Libera a lista da memória
-void deleteList(Elem** head, Elem**tail);
+void deleteList(Elem** write, Elem**read);
 //Cria um buffer circular
-void circularBufferInit(Elem** head, Elem** tail);
+void circularBufferInit(Elem** write, Elem** read);
 //Operação de push em buffer circular
-void circularBufferRead(Elem** head, Elem** tail, int urg, char pal[20]);
+void circularBufferRead(Elem** write, Elem** read, int urg, char pal[20]);
 //Operação de pop em buffer circular
-void circularBufferWrite(Elem** head, Elem** tail, Elem** output);
+void circularBufferWrite(Elem** write, Elem** read, Elem** output);
 
 int main()
 {
@@ -40,10 +40,10 @@ int main()
     FILE* lidos = fopen("lidos.dat", "w"); // Saída
 
     //Lista circular com tamanho fixo (40 elementos) 
-    Elem* head;
-    Elem* tail;
-    circularBufferInit(&head, &tail);
-    // Elem* pr = head; //Debug
+    Elem* write;
+    Elem* read;
+    circularBufferInit(&write, &read);
+    // Elem* pr = write; //Debug
 
     //Variáveis auxiliares para leitura de arquivo de entrada
     int operation;
@@ -52,7 +52,7 @@ int main()
 
     //Nó auxiliar, armazena o elemento "consumido" na operação de pop
     Elem* aux = (Elem*)malloc(sizeof(Elem));
-    Elem* lastTailIndex;
+    Elem* lastreadIndex;
 
     while(!feof(pacotes))
     {
@@ -66,16 +66,16 @@ int main()
 
         if(operation == CIRCULAR_BUFFER_WRITE_OPERATION)
         {
-            circularBufferRead(&head, &tail, urg, word);
+            circularBufferRead(&write, &read, urg, word);
         }
         else 
         {
-            lastTailIndex = tail;
+            lastreadIndex = read;
             
-            circularBufferWrite(&head, &tail, &aux); // Valor consumido é armazenado em aux
+            circularBufferWrite(&write, &read, &aux); // Valor consumido é armazenado em aux
         
             //Gravação em arquivo
-            if(lastTailIndex != tail)
+            if(lastreadIndex != read)
             {
                 fprintf(lidos, "%s\n", aux->pal); 
             }
@@ -85,7 +85,7 @@ int main()
 
     fclose(pacotes);
     fclose(lidos);
-    deleteList(&head, &tail);
+    deleteList(&write, &read);
     return 0;
 }
 
@@ -101,25 +101,25 @@ Elem* newNode(char pal[20], int urg)
 }
 
 //Adiciona um nó a lista circular
-void addNode(Elem** head, Elem** tail, Elem* elem)
+void addNode(Elem** write, Elem** read, Elem* elem)
 {
-    if(!(*head)) //Lista vazia
+    if(!(*write)) //Lista vazia
     {
-        (*head) = (*tail) = elem;
+        (*write) = (*read) = elem;
         elem->prox = elem;        
     }
     else //1 ou mais elementos
     {
-        (*tail)->prox = elem;
-        elem->prox = (*head);
-        (*tail) = elem;
+        (*read)->prox = elem;
+        elem->prox = (*write);
+        (*read) = elem;
     }
 }
 
 //Libera a lista da memória
-void deleteList(Elem** head, Elem**tail)
+void deleteList(Elem** write, Elem**read)
 {
-    Elem* current = (*head);
+    Elem* current = (*write);
     Elem* next;
 
     do
@@ -127,62 +127,62 @@ void deleteList(Elem** head, Elem**tail)
         next = current->prox;
         free(current);
         current = next;
-    } while(current->prox != (*tail));
-    (*head) = (*tail) = NULL;
+    } while(current->prox != (*read));
+    (*write) = (*read) = NULL;
 }
 
 //Operação de push em buffer circular
-void circularBufferRead(Elem** head, Elem** tail, int urg, char pal[20])
+void circularBufferRead(Elem** write, Elem** read, int urg, char pal[20])
 {
-    Elem* next = (*head)->prox;
+    Elem* next = (*write)->prox;
 
-    if(next == *tail) {
+    if(next == *read) {
         return;
     }
-    (*head)->urg = urg;
-    strcpy((*head)->pal, pal);
-    (*head) = next;
+    (*write)->urg = urg;
+    strcpy((*write)->pal, pal);
+    (*write) = next;
 }
 
 //Operação de pop em buffer circular
-void circularBufferWrite(Elem** head, Elem** tail, Elem** output)
+void circularBufferWrite(Elem** write, Elem** read, Elem** output)
 {
-    if(*head == *tail)
+    if(*write == *read)
     {
         return;
     }
-    Elem* next = (*tail)->prox;
+    Elem* next = (*read)->prox;
     
-    strcpy((*output)->pal, (*tail)->pal);
-    (*output)->urg = (*tail)->urg;
+    strcpy((*output)->pal, (*read)->pal);
+    (*output)->urg = (*read)->urg;
     (*output)->prox = NULL;
 
-    if(strcmp((*tail)->pal, "PRTY") == 0)
+    if(strcmp((*read)->pal, "PRTY") == 0)
     {
-        int count = (*tail)->urg;
+        int count = (*read)->urg;
      
         for(int i = 0; i < count; i++)
         {
-            if(*tail == *head)
+            if(*read == *write)
             {
                 break;
             }
-            (*tail) = (*tail)->prox;       
+            (*read) = (*read)->prox;       
         }
     }
     else
     {
-       (*tail) = next;
+       (*read) = next;
     }
 }
 
-void circularBufferInit(Elem** head, Elem** tail)
+void circularBufferInit(Elem** write, Elem** read)
 {
     int i;
-    (*head) = (*tail) = NULL;
+    (*write) = (*read) = NULL;
     for(i = 0; i < CIRCULAR_BUFFER_MAX_SIZE; i++)
     {
-        addNode(head, tail, newNode("0", 0));
+        addNode(write, read, newNode("0", 0));
     }
-    (*tail) = (*tail)->prox; //Head e Tail tem o mesmo índice
+    (*read) = (*read)->prox; //write e read tem o mesmo índice
 }
