@@ -14,7 +14,7 @@ LinkedList* newList()
 
 Node* newNode(int key, char value)
 {
-    Node* new_node = malloc(sizeof(Node *));
+    Node* new_node = (Node *) malloc(sizeof(Node));
     new_node->data.key = key;
     new_node->data.value = value;
     new_node->next = NULL;
