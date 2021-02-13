@@ -1,10 +1,14 @@
 #include <stdlib.h>
 
-void bubbleSort(int array[], int arrayLenght) {
+void bubbleSort(int arrayLenght, int *array) 
+{
     int i, j, aux;
-    for(i = 0; i < arrayLenght; i++) {
-        for(j = i + 1; j < arrayLenght; j++) {
-            if(array[i] > array[j]) {
+    for(i = 0; i < arrayLenght; i++) 
+    {
+        for(j = i + 1; j < arrayLenght; j++) 
+        {
+            if(array[i] > array[j]) 
+            {
                 aux = array[i];
                 array[i] = array[j];
                 array[j] = aux;
@@ -13,16 +17,21 @@ void bubbleSort(int array[], int arrayLenght) {
     }
 }
 
-void selectionSort(int array[], int arrayLenght) {
+void selectionSort( int arrayLenght, int *array) 
+{
     int i, j, min, aux;
-    for(i = 0; i < arrayLenght; i++) {
+    for(i = 0; i < arrayLenght; i++) 
+    {
         min = i;
-        for(j = i + 1; j < arrayLenght; j++) {
-            if( array[j] < array[min] ) {
+        for(j = i + 1; j < arrayLenght; j++) 
+        {
+            if( array[j] < array[min] ) 
+            {
                 min = j;
             }
         }
-        if(array[i] != array[min]) {
+        if(array[i] != array[min]) 
+        {
             aux = array[i];
             array[i] = array[min];
             array[min] = aux;
@@ -30,12 +39,15 @@ void selectionSort(int array[], int arrayLenght) {
     }
 }
 
-void insertionSort(int array[], int arrayLenght) {
+void insertionSort(int arrayLenght, int *array) 
+{
     int i, j, aux;
-    for(i = 1; i < arrayLenght; i++) {
+    for(i = 1; i < arrayLenght; i++) 
+    {
         aux = array[i];
         j = i - 1;
-        while(j >= 0 && array[j] > aux) {
+        while(j >= 0 && array[j] > aux) 
+        {
             array[j + 1] = array[j];
             j -= 1;
         }
@@ -43,22 +55,29 @@ void insertionSort(int array[], int arrayLenght) {
     }
 }
 
-void quickSort(int array[], int begin, int end) {
+void quickSort(int low, int high, int *array) 
+{
     int i, j, pivot, aux;
     
-    i = begin;
-    j = end - 1;
-    pivot = array[(begin + end) / 2]; //middle
+    i = low;
+    j = high - 1;
+    pivot = array[(low + high) / 2]; //middle
 
-    while(i <= j) {
+    while(i <= j) 
+    {
         
-        while(array[i] < pivot && i < end)
+        while(array[i] < pivot && i < high)
+        {
             i++;
+        }
         
-        while(array[j] > pivot && j > begin)
+        while(array[j] > pivot && j > low)
+        {
             j--;
+        }
 
-        if(i <= j) {
+        if(i <= j) 
+        {
             aux = array[i];
             array[i] = array[j];
             array[j] = aux;
@@ -67,94 +86,98 @@ void quickSort(int array[], int begin, int end) {
         }
     }
 
-    if(j > begin) 
-        quickSort(array, begin, j + 1);
-    if(i < end)
-        quickSort(array, i, end);
-}
-
-void makeHeap(int *array, int begin, int end) {
-    int aux = array[begin]; 
-    int j = begin*2+1; //left heap child
-
-    //enquanto j for menorigual ao final do vetor
-    while(j <= end) {
-        if(j < end) {
-            if(array[j] < array[j+1]) {
-                j++;
-            }
-        }
-        if(aux < array[j]) {
-            array[begin] = array[j];
-            begin = j;
-            j = 2*begin+1;
-        }
-        else {
-            j = end + 1;
-        }
-        array[begin] = aux;
+    if(j > low)
+    {
+        quickSort(low, j + 1, array);
+    } 
+    if(i < high)
+    {
+        quickSort(i, high, array);
     }
 }
 
-void heapSort(int *array, int arrayLenght) {
-    int i, aux;
+// void makeHeap(int *array, int begin, int end) {
+//     int aux = array[begin]; 
+//     int j = begin*2+1; //left heap child
 
-    for(i = (arrayLenght - 1)/2; i >= 0 ; i--) { 
-        makeHeap(array, i, arrayLenght - 1);
-    }
+//     //enquanto j for menorigual ao final do vetor
+//     while(j <= end) {
+//         if(j < end) {
+//             if(array[j] < array[j+1]) {
+//                 j++;
+//             }
+//         }
+//         if(aux < array[j]) {
+//             array[begin] = array[j];
+//             begin = j;
+//             j = 2*begin+1;
+//         }
+//         else {
+//             j = end + 1;
+//         }
+//         array[begin] = aux;
+//     }
+// }
 
-    for(i = (arrayLenght - 1); i >= 1; i--) {
-        aux = array[0];
-        array[0] = array[i];
-        array[i] = aux;
-        makeHeap(array, 0, i - 1);
-    }
-}
+// void heapSort(int *array, int arrayLenght) {
+//     int i, aux;
 
-//merge sort
+//     for(i = (arrayLenght - 1)/2; i >= 0 ; i--) { 
+//         makeHeap(array, i, arrayLenght - 1);
+//     }
 
-void merge(int *array, int begin, int middle, int end) {
+//     for(i = (arrayLenght - 1); i >= 1; i--) {
+//         aux = array[0];
+//         array[0] = array[i];
+//         array[i] = aux;
+//         makeHeap(array, 0, i - 1);
+//     }
+// }
+
+// //merge sort
+
+// void merge(int *array, int begin, int middle, int end) {
     
-    int i = begin, j = middle + 1, aux = 0, len = end - begin + 1;
-    int *auxArray = calloc(len, sizeof(int));
+//     int i = begin, j = middle + 1, aux = 0, len = end - begin + 1;
+//     int *auxArray = calloc(len, sizeof(int));
 
-    while( i <= middle && j <= end ) {
+//     while( i <= middle && j <= end ) {
         
-        if( array[i] < array[j] ) {
-            auxArray[aux] = array[i];
-            i++;
-        }
-        else {
-            auxArray[aux] = array[j];
-            j++;
-        }
-        aux++;
-    }
+//         if( array[i] < array[j] ) {
+//             auxArray[aux] = array[i];
+//             i++;
+//         }
+//         else {
+//             auxArray[aux] = array[j];
+//             j++;
+//         }
+//         aux++;
+//     }
 
-    while( i <= middle ) {
-        auxArray[aux] = array[i];
-        aux++;
-        i++;
-    }
+//     while( i <= middle ) {
+//         auxArray[aux] = array[i];
+//         aux++;
+//         i++;
+//     }
 
-    while( j <= end ) {
-        auxArray[aux] = array[j];
-        aux++;
-        j++;
-    }
+//     while( j <= end ) {
+//         auxArray[aux] = array[j];
+//         aux++;
+//         j++;
+//     }
 
-    for(aux = begin; aux <= end; aux++) {
-        array[aux] = auxArray[aux - begin];
-    }
+//     for(aux = begin; aux <= end; aux++) {
+//         array[aux] = auxArray[aux - begin];
+//     }
 
-    free(auxArray);
-}
+//     free(auxArray);
+// }
 
-void mergeSort(int *array, int begin, int end) {
-    if(begin < end) {
-        int middle = (begin + end)/2;
-        mergeSort(array, begin, middle);
-        mergeSort(array, middle + 1, end);
-        merge(array, begin, middle, end);
-    }
-}
+// void mergeSort(int *array, int begin, int end) {
+//     if(begin < end) {
+//         int middle = (begin + end)/2;
+//         mergeSort(array, begin, middle);
+//         mergeSort(array, middle + 1, end);
+//         merge(array, begin, middle, end);
+//     }
+// }

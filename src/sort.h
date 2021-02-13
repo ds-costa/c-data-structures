@@ -6,17 +6,18 @@
 #ifndef SORT_H
 #define SORT_H
 // Bubble Sort
-void bubbleSort( int array[], int arrayLenght );
+void bubbleSort( int arrayLenght, int *array );
 //  Selection Sort
-void selectionSort( int array[], int arrayLenght );
+void selectionSort( int arrayLenght, int *array );
 // Insertion Sort
-void insertionSort( int array[], int arrayLenght );
+void insertionSort( int arrayLenght, int *array );
 // Quick Sort
-void quickSort(int array[], int begin, int end);
-//  Heap Sort
-void heapSort(int *array, int arrayLenght);
-void makeHeap(int *array, int begin, int end);
-// Merge Sort
-void mergeSort(int *array, int begin, int end);
-void merge(int *array, int begin, int middle, int end);
+void quickSort(int begin, int end, int *array);
+
+// //  Heap Sort
+// void heapSort(int *array, int arrayLenght);
+// void makeHeap(int *array, int begin, int end);
+// // Merge Sort
+// void mergeSort(int *array, int begin, int end);
+// void merge(int *array, int begin, int middle, int end);
 #endif
