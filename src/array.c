@@ -1,52 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "array.h"
+
+// //Read values from the console to an entire array of one dimension
+// void scanIntArray( int array[], int arrayLenght ) {
+//     int i;
+//     for( i = 0 ; i < arrayLenght ; i++ ) {
+//         printf("Array[%d] :: ", i);
+//         scanf("%i", &array[i]);
+//     }
+// }
+// //Write on console an integer one dimentional array values
+// void printIntArray( int *array, int arrayLenght ) {
+//     int i;
+//     for( i = 0 ; i < arrayLenght ; i++ ) {
+//         printf("(int) Array[%d] :: %d\n", i, array[i]);
+//     }
+// }
 
 
-//Read values from the console to an entire array of one dimension
-void scanIntArray( int array[], int arrayLenght ) {
-    int i;
-    for( i = 0 ; i < arrayLenght ; i++ ) {
-        printf("Array[%d] :: ", i);
-        scanf("%i", &array[i]);
-    }
-}
+ARRAY_SCAN(int, "%d", array[i])
+ARRAY_PRINT(int, "(int) Array[%d] :: [%d]\n", i , array[i])
 
-//Write on console an integer one dimentional array values
-void printIntArray( int *array, int arrayLenght ) {
-    int i;
-    for( i = 0 ; i < arrayLenght ; i++ ) {
-        printf("(int) Array[%d] :: %d\n", i, array[i]);
-    }
-}
+ARRAY_SCAN(float, "%f", array[i])
+ARRAY_PRINT(float, "(float) Array[%d] :: [%f]\n", i , array[i])
 
-void scanFloatArray( float *array, int arrayLenght ) {
-    int i;
-    for( i = 0 ; i < arrayLenght ; i++ ) {
-        printf("Array[%d] :: ", i);
-        scanf("%f", &array[i]);
-    }
-}
-void printFloatArray( float *array, int arrayLenght ) {
-    int i;
-    for( i = 0 ; i < arrayLenght ; i++ ) {
-        printf("(float) Array[%d] :: %.2f\n", i, array[i]);
-    }
-}
+ARRAY_SCAN(double, "%lf", array[i])
+ARRAY_PRINT(double, "(double) Array[%d] :: [%lf]\n", i , array[i])
 
-void scanDoubleArray( double *array, int arrayLenght ) {
-    int i;
-    for( i = 0 ; i < arrayLenght ; i++ ) {
-        printf("Array[%d] :: ", i);
-        scanf("%lf", &array[i]);
-    }
-}
-void printDoubleArray( double *array, int arrayLenght ) {
-    int i;
-    for( i = 0 ; i < arrayLenght ; i++ ) {
-        printf("(float) Array[%d] :: %.2lf\n", i, array[i]);
-    }
-}
+
 
 //Fill an integer array with random numbers in an interval [a, b]
 void randomValuesFillArray( int *array, int arrayLenght, int inferiorLimit, int superiorLimit ) {
