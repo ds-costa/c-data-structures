@@ -29,16 +29,27 @@ Write your script in the main.c file
 
 ```c
 #include <stdio.h>
-#include <stdlib.h>
-// Importing the self-made libs is like:
-#include "include/array.h"
+#include "src/array.h"
 
-int main(int argc, char **argv) {
-	int arrayLenght = 10;
-	int array[arrayLenght];
-	scanIntArray(array, arrayLenght); //from array.h
-	printIntArray(array, arrayLenght); //from array.h
-	return 0;
+int main() {
+
+    int arr[] = {
+        123,76, 0, 3, 10, 434, 22, -1, 4, 99, 1, 12408, -12
+    };
+
+    float arr2[] = {
+        123,76, 0, 3, 10, 434, 22, -1, 4, 99, 1, 12408, -12
+    };
+    
+    double arr3[] = {
+        123.333,76, 0, 3, 10, 434, 22, -1, 4, 99, 1, 12408, -12
+    };
+
+    array_print_int(12, arr);
+    array_print_float(12, arr2);
+    array_print_double(12, arr3);
+
+    return 0;
 }
 ```
 
