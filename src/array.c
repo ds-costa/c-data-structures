@@ -3,18 +3,22 @@
 #include <time.h>
 #include "array.h"
 
-// //Read values from the console to an entire array of one dimension
-// void scanIntArray( int array[], int arrayLenght ) {
+//Read values from the console to an entire array of one dimension
+// void arr_scan_int(int arr_len, int *array) 
+// {
 //     int i;
-//     for( i = 0 ; i < arrayLenght ; i++ ) {
+//     for( i = 0 ; i < arr_len ; i++ ) 
+//     {
 //         printf("Array[%d] :: ", i);
 //         scanf("%i", &array[i]);
 //     }
 // }
-// //Write on console an integer one dimentional array values
-// void printIntArray( int *array, int arrayLenght ) {
+//Write on console an integer one dimentional array values
+// void arr_print_int(int arr_len, int *array) 
+// {
 //     int i;
-//     for( i = 0 ; i < arrayLenght ; i++ ) {
+//     for( i = 0 ; i < arr_len ; i++ ) 
+//     {
 //         printf("(int) Array[%d] :: %d\n", i, array[i]);
 //     }
 // }
@@ -31,30 +35,38 @@ ARRAY_PRINT(double, "(double) Array[%d] :: [%lf]\n", i , array[i])
 
 
 
-//Fill an integer array with random numbers in an interval [a, b]
-void randomValuesFillArray( int *array, int arrayLenght, int inferiorLimit, int superiorLimit ) {
+//Fill an integer array with random numbers in an interval [low, high]
+void arr_random_fill(int low, int high, int arr_len, int *arr) 
+{
     int i;
-    for( i = 0; i < arrayLenght; i++ ) {
-        array[i] = ( inferiorLimit + rand() % ( superiorLimit - inferiorLimit + 1 ));
+    for(i = 0; i < arr_len; ++i) 
+    {
+        arr[i] = ( low + rand() % ( high - low + 1 ));
     }
 }
 
 //Shuffle an array  By: Richard Durstenfeld (1964) AND Ronald Fisher and Frank Yates (1938) 
-void fisherYattesShuffle(int *array, int arrayLenght) {
-  int i, j, aux;
-	for(i = 0 ; i < arrayLenght ; i++) {
-		j = (rand() % arrayLenght);
-		aux = array[i];
-		array[i] = array[j];
-		array[j] = aux;
+void arr_shuffle(int arr_len, int *arr) 
+{
+    int i, j, aux;
+	for(i = 0 ; i < arr_len ; i++) 
+    {
+		j = (rand() % arr_len);
+		aux = arr[i];
+		arr[i] = arr[j];
+		arr[j] = aux;
 	}
 }
 
-int linearSearch(int *array, int arrayLenght, int item) {
+int arr_linear_search(int key, int arr_len, int *arr)
+{
     int i;
-    for(i = 0; i < arrayLenght; i++) {
-        if(array[i] == item)
+    for(i = 0; i < arr_len; i++) 
+    {
+        if(arr[i] == key)
+        {
             return i;
+        }
     }
     return -1; 
 }
