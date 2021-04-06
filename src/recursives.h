@@ -6,17 +6,55 @@
 
 #ifndef RECURSIVES_H
 #define RECURSIVES_H
-int decimalToBinary( int value );
-// Factorial of a number (!a)
+
+/**
+ * function: dec_to_bin
+ * Convert a decimal number to a binary
+ * @param value, integer decimal value
+ * return: converted binary value 
+ */
+int dec_to_bin( int value );
+
+/**
+ * function: factorial
+ * Factorial of a number (!value)
+ * @param value, integer decimal value
+ * return: factorial value 
+ */
 int factorial( int value );
-// Binomial coefficient is indexed by a pair of integers n ≥ k ≥ 0
-int binomialCoefficient( int n, int k );
-// GCD between two numbers
-int greatestCommonDivisor( int n, int k );
-// Return: n^k like pow() function of math.h
+
+/**
+ * function: binomial_coefficient
+ * Binomial coefficient is indexed by a pair of integers n ≥ k ≥ 0
+ * @param n, integer decimal value
+ * @param k, integer decimal value 
+ * return: binomial number
+ */
+int binomial_coefficient( int n, int k );
+
+/**
+ * function: greatest_common_divisor
+ * GCD between two numbers
+ * @param n, integer decimal value
+ * @param k, integer decimal value 
+ * return: GDC between n and k
+ */
+int greatest_common_divisor( int n, int k );
+
+/**
+ * function: power
+ * @param n, integer decimal value
+ * @param k, integer decimal value 
+ * return: n^k like pow() function of math.h
+ */
 int power(int n, int k);
-// Sum of all values of an array
-int  arraySum(int array[], int array_size);
-// Sum of first 'a' values
-int serieSum( int a );
+
+/**
+ * function: serie_sum
+ * Sum of first 'a' values
+ * @param a, integer decimal value
+ * return: Serie sum
+ */
+int serie_sum( int a );
+
 #endif
