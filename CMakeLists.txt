@@ -10,6 +10,7 @@ add_library(sort src/sort.c)
 add_library(strings src/strings.c)
 add_library(node src/node.c)
 add_library(linkedList src/linkedList.c)
+add_library(stack src/stack.c)
 
 add_executable(main main.c)
-target_link_libraries(main array recursives sort strings node linkedList -lm)
+target_link_libraries(main array recursives sort strings node linkedList stack -lm)
