@@ -1,11 +1,17 @@
 #include <stdlib.h>
 
-void bubbleSort(int arrayLenght, int *array) 
+/**
+ * function: bubble_sort
+ * Buble_sort implementation
+ * @param arr_len, Array length
+ * @param array, Integer array reference
+ */
+void bubble_sort(int arr_len, int *array) 
 {
     int i, j, aux;
-    for(i = 0; i < arrayLenght; i++) 
+    for(i = 0; i < arr_len; i++) 
     {
-        for(j = i + 1; j < arrayLenght; j++) 
+        for(j = i + 1; j < arr_len; j++) 
         {
             if(array[i] > array[j]) 
             {
@@ -17,13 +23,19 @@ void bubbleSort(int arrayLenght, int *array)
     }
 }
 
-void selectionSort( int arrayLenght, int *array) 
+/**
+ * function: selection_sort
+ * Selection sort implementation
+ * @param arr_len, Array length
+ * @param array, Integer array reference
+ */
+void selection_sort( int arr_len, int *array) 
 {
     int i, j, min, aux;
-    for(i = 0; i < arrayLenght; i++) 
+    for(i = 0; i < arr_len; i++) 
     {
         min = i;
-        for(j = i + 1; j < arrayLenght; j++) 
+        for(j = i + 1; j < arr_len; j++) 
         {
             if( array[j] < array[min] ) 
             {
@@ -39,10 +51,16 @@ void selectionSort( int arrayLenght, int *array)
     }
 }
 
-void insertionSort(int arrayLenght, int *array) 
+/**
+ * function: insertion_sort
+ * Insertion sort implementation
+ * @param arr_len, Array length
+ * @param array, Integer array reference
+ */
+void insertion_sort(int arr_len, int *array) 
 {
     int i, j, aux;
-    for(i = 1; i < arrayLenght; i++) 
+    for(i = 1; i < arr_len; i++) 
     {
         aux = array[i];
         j = i - 1;
@@ -55,7 +73,14 @@ void insertionSort(int arrayLenght, int *array)
     }
 }
 
-void quickSort(int low, int high, int *array) 
+/**
+ * function: quick_sort
+ * Quick sort implementation
+ * @param low, Array inferior limit. On function call: (low = 0) 
+ * @param high, Array superior limit
+ * @param array, Integer array reference
+ */
+void quick_sort(int low, int high, int *array) 
 {
     int i, j, pivot, aux;
     
@@ -88,96 +113,10 @@ void quickSort(int low, int high, int *array)
 
     if(j > low)
     {
-        quickSort(low, j + 1, array);
+        quick_sort(low, j + 1, array);
     } 
     if(i < high)
     {
-        quickSort(i, high, array);
+        quick_sort(i, high, array);
     }
 }
-
-// void makeHeap(int *array, int begin, int end) {
-//     int aux = array[begin]; 
-//     int j = begin*2+1; //left heap child
-
-//     //enquanto j for menorigual ao final do vetor
-//     while(j <= end) {
-//         if(j < end) {
-//             if(array[j] < array[j+1]) {
-//                 j++;
-//             }
-//         }
-//         if(aux < array[j]) {
-//             array[begin] = array[j];
-//             begin = j;
-//             j = 2*begin+1;
-//         }
-//         else {
-//             j = end + 1;
-//         }
-//         array[begin] = aux;
-//     }
-// }
-
-// void heapSort(int *array, int arrayLenght) {
-//     int i, aux;
-
-//     for(i = (arrayLenght - 1)/2; i >= 0 ; i--) { 
-//         makeHeap(array, i, arrayLenght - 1);
-//     }
-
-//     for(i = (arrayLenght - 1); i >= 1; i--) {
-//         aux = array[0];
-//         array[0] = array[i];
-//         array[i] = aux;
-//         makeHeap(array, 0, i - 1);
-//     }
-// }
-
-// //merge sort
-
-// void merge(int *array, int begin, int middle, int end) {
-    
-//     int i = begin, j = middle + 1, aux = 0, len = end - begin + 1;
-//     int *auxArray = calloc(len, sizeof(int));
-
-//     while( i <= middle && j <= end ) {
-        
-//         if( array[i] < array[j] ) {
-//             auxArray[aux] = array[i];
-//             i++;
-//         }
-//         else {
-//             auxArray[aux] = array[j];
-//             j++;
-//         }
-//         aux++;
-//     }
-
-//     while( i <= middle ) {
-//         auxArray[aux] = array[i];
-//         aux++;
-//         i++;
-//     }
-
-//     while( j <= end ) {
-//         auxArray[aux] = array[j];
-//         aux++;
-//         j++;
-//     }
-
-//     for(aux = begin; aux <= end; aux++) {
-//         array[aux] = auxArray[aux - begin];
-//     }
-
-//     free(auxArray);
-// }
-
-// void mergeSort(int *array, int begin, int end) {
-//     if(begin < end) {
-//         int middle = (begin + end)/2;
-//         mergeSort(array, begin, middle);
-//         mergeSort(array, middle + 1, end);
-//         merge(array, begin, middle, end);
-//     }
-// }

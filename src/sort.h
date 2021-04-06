@@ -5,19 +5,38 @@
 
 #ifndef SORT_H
 #define SORT_H
-// Bubble Sort
-void bubbleSort( int arrayLenght, int *array );
-//  Selection Sort
-void selectionSort( int arrayLenght, int *array );
-// Insertion Sort
-void insertionSort( int arrayLenght, int *array );
-// Quick Sort
-void quickSort(int begin, int end, int *array);
 
-// //  Heap Sort
-// void heapSort(int *array, int arrayLenght);
-// void makeHeap(int *array, int begin, int end);
-// // Merge Sort
-// void mergeSort(int *array, int begin, int end);
-// void merge(int *array, int begin, int middle, int end);
+/**
+ * function: bubble_sort
+ * Buble_sort implementation
+ * @param arr_len, Array length
+ * @param array, Integer array reference
+ */
+void bubble_sort( int arr_len, int *array );
+
+/**
+ * function: selection_sort
+ * Selection sort implementation
+ * @param arr_len, Array length
+ * @param array, Integer array reference
+ */
+void selection_sort( int arr_len, int *array );
+
+/**
+ * function: insertion_sort
+ * Insertion sort implementation
+ * @param arr_len, Array length
+ * @param array, Integer array reference
+ */
+void insertion_sort( int arr_len, int *array );
+
+/**
+ * function: quick_sort
+ * Quick sort implementation
+ * @param low, Array inferior limit. On function call: (low = 0) 
+ * @param high, Array superior limit
+ * @param array, Integer array reference
+ */
+void quick_sort(int lo, int hi, int *array);
+
 #endif
