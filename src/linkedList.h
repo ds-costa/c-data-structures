@@ -18,15 +18,6 @@ typedef struct linked_list
 LinkedList *new_linked_list();
 
 /**
- * function: new_node
- * Return a linked list node 
- * @param key, new node key
- * @param value, new node value
- * return: a linked list node
- */
-Node *new_node(int key, char value);
-
-/**
  * function: list_prepend
  * Inserts a node at the beginning of the list
  * @param list, linked list reference
