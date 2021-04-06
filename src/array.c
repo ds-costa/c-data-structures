@@ -3,40 +3,99 @@
 #include <time.h>
 #include "array.h"
 
-//Read values from the console to an entire array of one dimension
-// void arr_scan_int(int arr_len, int *array) 
-// {
-//     int i;
-//     for( i = 0 ; i < arr_len ; i++ ) 
-//     {
-//         printf("Array[%d] :: ", i);
-//         scanf("%i", &array[i]);
-//     }
-// }
-//Write on console an integer one dimentional array values
-// void arr_print_int(int arr_len, int *array) 
-// {
-//     int i;
-//     for( i = 0 ; i < arr_len ; i++ ) 
-//     {
-//         printf("(int) Array[%d] :: %d\n", i, array[i]);
-//     }
-// }
+/**
+ * function: arr_scan_int
+ * Writes to the array the (int) content read in the stdin
+ * @param arr_len, Array length
+ * @param array, Integer array reference
+ */
+void arr_scan_int(int arr_len, int *array) {
+    int i;
+    for(i = 0; i < arr_len; i++) {
+        scanf("%d", &array[i]);
+    }
+}
 
+/**
+ * function: arr_print_int
+ * Shows the contents of the (int) array in stdout
+ * @param arr_len, Array length
+ * @param array, Integer array reference
+ */
+void arr_print_int(int arr_len, int *array) {
+	int i;
+	printf("[ ");
+    for(i = 0; i < arr_len; i++) {
+		printf("%d ", array[i]);
+	}    
+	printf("]\n");
+}
 
-ARRAY_SCAN(int, "%d", array[i])
-ARRAY_PRINT(int, "(int) Array[%d] :: [%d]\n", i , array[i])
+/**
+ * function: arr_scan_float
+ * Writes to the array the (float) content read in the stdin
+ * @param arr_len, Array length
+ * @param array, Integer array reference
+ */
+void arr_scan_float(int arr_len, float *array) {
+    int i;
+    for(i = 0; i < arr_len; i++) {
+        scanf("%f", &array[i]);
+    }
+}
 
-ARRAY_SCAN(float, "%f", array[i])
-ARRAY_PRINT(float, "(float) Array[%d] :: [%f]\n", i , array[i])
+/**
+ * function: arr_print_float
+ * Shows the contents of the (float) array in stdout
+ * @param arr_len, Array length
+ * @param array, Integer array reference
+ */
+void arr_print_float(int arr_len, float *array) {
+	int i;
+	printf("[ ");
+    for(i = 0; i < arr_len; i++) {
+		printf("%f ", array[i]);
+	}    
+	printf("]\n");
+}
 
-ARRAY_SCAN(double, "%lf", array[i])
-ARRAY_PRINT(double, "(double) Array[%d] :: [%lf]\n", i , array[i])
+/**
+ * function: arr_scan_double
+ * Writes to the array the (double) content read in the stdin
+ * @param arr_len, Array length
+ * @param array, Integer array reference
+ */
+void arr_scan_double(int arr_len, double *array) {
+    int i;
+    for(i = 0; i < arr_len; i++) {
+        scanf("%lf", &array[i]);
+    }
+}
 
+/**
+ * function: arr_print_double
+ * Shows the contents of the (double) array in stdout
+ * @param arr_len, Array length
+ * @param array, Integer array reference
+ */
+void arr_print_double(int arr_len, double *array) {
+	int i;
+	printf("[ ");
+    for(i = 0; i < arr_len; i++) {
+		printf("%lf ", array[i]);
+	}    
+	printf("]\n");
+}
 
-
-//Fill an integer array with random numbers in an interval [low, high]
-void arr_random_fill(int low, int high, int arr_len, int *arr) 
+/**
+ * function: arr_random_fill_int
+ * Fill an integer array with random numbers in an interval [low, high]
+ * @param low, inferior limit 
+ * @param high, superior limit
+ * @param arr_len, Array length
+ * @param arr, Integer array reference
+ */
+void arr_random_fill_int(int low, int high, int arr_len, int *arr) 
 {
     int i;
     for(i = 0; i < arr_len; ++i) 
@@ -45,8 +104,13 @@ void arr_random_fill(int low, int high, int arr_len, int *arr)
     }
 }
 
-//Shuffle an array  By: Richard Durstenfeld (1964) AND Ronald Fisher and Frank Yates (1938) 
-void arr_shuffle(int arr_len, int *arr) 
+/**
+ * function: arr_shuffle_int
+ * Shuffle an array.  Original algo By: Richard Durstenfeld (1964) AND Ronald Fisher and Frank Yates (1938) 
+ * @param arr_len, Array length
+ * @param arr, Integer array reference
+ */
+void arr_shuffle_int(int arr_len, int *arr) 
 {
     int i, j, aux;
 	for(i = 0 ; i < arr_len ; i++) 
@@ -58,7 +122,14 @@ void arr_shuffle(int arr_len, int *arr)
 	}
 }
 
-int arr_linear_search(int key, int arr_len, int *arr)
+/**
+ * function: arr_linear_search_int
+ * Implementation of linear search algorithm
+ * @param key, Target value
+ * @param arr_len, Array length
+ * @param arr, Integer array reference
+ */
+int arr_linear_search_int(int key, int arr_len, int *arr)
 {
     int i;
     for(i = 0; i < arr_len; i++) 

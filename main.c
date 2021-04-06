@@ -19,10 +19,8 @@ int main() {
     };
 
     arr_print_int(12, arr);
-    arr_shuffle(12, arr);
-    arr_print_int(12, arr);
-    printf("%d\n", arr_linear_search(1, 12, arr));
-
+    arr_print_float(12, arr2);
+    arr_print_double(12, arr3);
 
     return 0;
 }
