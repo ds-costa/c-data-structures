@@ -141,3 +141,35 @@ int arr_linear_search_int(int key, int arr_len, int *arr)
     }
     return -1; 
 }
+
+/**
+ * function: arr_binary_search_int
+ * Implementation of binary search algorithm for sorted arrays
+ * @param key Target value
+ * @param arr_len Array length
+ * @param arr Target integer array reference
+ */
+int arr_binary_search_int(int key, int arr_len, int *arr) {
+    int low = 0;
+    int high = arr_len;
+    int mid;
+
+    while(low < high) {
+    
+        mid = (high + low) / 2;
+        
+        if(arr[mid] == key) {
+            return mid;
+        }
+        
+        if(arr[mid] < key) {
+            low = mid;
+        }
+
+        else if(arr[mid] > key) {
+            high = mid;
+        }
+    }   
+
+    return -1;
+}

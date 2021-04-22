@@ -78,4 +78,13 @@ void arr_shuffle_int(int arr_len, int *arr);
  */
 int arr_linear_search_int(int key, int arr_len, int *arr);
 
+/**
+ * function: arr_binary_search_int
+ * Implementation of binary search algorithm for sorted arrays
+ * @param key, Target value
+ * @param arr_len, Array length
+ * @param arr, Target integer array reference
+ */
+int arr_binary_search_int(int key, int arr_len, int *arr);
+
 #endif
