@@ -1,8 +1,11 @@
-#My files
+# BUILD
 .vscode
 build
 /build
 main
+bin
+lib
+obj
 
 # Created by https://www.gitignore.io/api/c,code
 # Edit at https://www.gitignore.io/?templates=c,code
