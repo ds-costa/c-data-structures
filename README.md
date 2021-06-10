@@ -18,14 +18,10 @@ $> sudo apt install build-essential
 ```bash
 $> sudo apt install make 
 ```
-- cmake
-```bash
-$> sudo apt install cmake 
-```
 
 ## ⌨️ Getting Started
 
-Write your script in the main.c file
+- Write your script in the main.c file
 
 ```c
 #include <stdio.h>
@@ -53,45 +49,24 @@ int main() {
 }
 ```
 
-Now build with cmake
-
-- Create a build folder.
+- Build with make
 ```bash
-$> mkdir build
-```
-- Open the folder.
-```bash
-$> cd build
-```
-- Run cmake.
-```bash
-$build> cmake ..
-```
-- Run make.
-```bash
-$build> make
+$> make
 ```
 - Execute the compiled project.
 ```bash
-$build> ./main  
+$> ./bin/app  
 ```
-
-Complicated? If you are using Linux, you can simply run the _build.sh script in the root folder to build your project. Then use _make.sh and _run.sh to use your program.
-
+- To delete the created binaries
 ```bash
-$> ./_build.sh
-$> ./_make.sh
-$> ./_run.sh
+$> make clean  
 ```
 
 ## 📁 Creating your own libs and functions
 You can create your own libraries with simple steps:
 
 - Create the .c and .h files of your lib in the src folder (in our example we will create foo.h and foo.c)
-- In the CmakeLists.txt file add your library the following way:
-	- add_library(foo src/foo.c)
-	- target_link_libraries(main foo)
-- Add the lib header in the main
+- Add the lib header in the main.c file
 	- ```#include "src/foo.h" ```
 
 ## 📝 License
