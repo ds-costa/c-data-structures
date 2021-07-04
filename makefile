@@ -20,7 +20,7 @@ LIB := lib
 
 SRCS := $(wildcard $(SRC)/*.c)
 OBJS := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
-LIBS := $(patsubst $(SRC)/%.c, $(LIB)/%.a, $(SRCS))
+LIBS := $(patsubst $(SRC)/%.c, $(LIB)/$(LIB)%.a, $(SRCS))
 BINS := $(BIN)/app
 
 # ------
@@ -46,8 +46,8 @@ $(LIB):
 $(OBJ)/%.o: $(SRC)/%.c
 	$(CC) $^ $(CFLAGS) -c -o $@
 
-$(LIB)/%.a: $(OBJ)/%.o
-	ar -cvrs $@ $^
+$(LIB)/$(LIB)%.a: $(OBJ)/%.o
+	ar rcs $@ $^
 
 clean:
 	$(RM) $(BIN)
