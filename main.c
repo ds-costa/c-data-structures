@@ -7,6 +7,8 @@
 #define ARRAY_IMPLEMENTATION_H
 #include "src/array.h"
 
+#define SORT_IMPLEMENTATION_H
+#include "src/sort.h"
 
 int main() {
 
@@ -23,6 +25,11 @@ int main() {
     };
 
     arr_print(12, arr);
+
+    quick_sort(0, 12, arr);
+
+    arr_print(12, arr);
+    
 
     return 0;
 }
