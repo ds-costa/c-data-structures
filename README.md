@@ -1,9 +1,10 @@
-# c-data-structures (Because c stands for cool)
+# c single header libs
 
-C language algorithms and data structures in single header files (shl). Inspired by [nothings stb repo](https://github.com/nothings/stb) and [NHollmann article](https://nicolashollmann.de/blog/single-header-libraries/)
+A small collection of C language algorithms and data structures in single header files. Inspired by [nothings stb repo](https://github.com/nothings/stb) and [NHollmann article](https://nicolashollmann.de/blog/single-header-libraries/)
+
 ## ✔️ Requirements
 
-Scripts written in linux environment (Ubuntu **18.x** and **20.x**). Tests with gcc compiler.
+Algos written in linux environment (Ubuntu **18.x** and **20.x**). Tests with gcc compiler.
 
 * gcc compiler
 ```bash
